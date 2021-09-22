@@ -17,7 +17,7 @@ public class Battery {
         Battery second = new Battery(50);
         System.out.println("first was(percent) " + first.load
             + " second was(percent) " + second.load);
-        second.exchange(first);
+        first.exchange(second);
         System.out.println("first become(percent) " + first.load
                 + " second become(percent) " + second.load);
     }
