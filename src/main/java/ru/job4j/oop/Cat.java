@@ -23,6 +23,5 @@ public class Cat {
         mir.giveNick("Mirik");
         mir.eat("mushroom");
         mir.show();
-
     }
 }
