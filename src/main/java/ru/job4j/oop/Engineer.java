@@ -18,5 +18,4 @@ public class Engineer extends Profession {
     public String getDirection() {
         return direction;
     }
-
 }
