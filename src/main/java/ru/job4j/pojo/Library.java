@@ -12,8 +12,7 @@ public class Library {
         bookshelf[1] = shantaram;
         bookshelf[2] = under;
         bookshelf[3] = tutorial;
-        for (int i = 0; i < bookshelf.length; i++) {
-            Book wat = bookshelf[i];
+        for (Book wat : bookshelf) {
             System.out.println(wat.getName() + " - " + wat.getPages());
         }
         System.out.println("Let's swap first and fourth book");
@@ -21,15 +20,13 @@ public class Library {
         bookshelf[0] = bookshelf[3];
         bookshelf[3] = inHand;
         System.out.println("Done!");
-        for (int i = 0; i < bookshelf.length; i++) {
-            Book wat = bookshelf[i];
+        for (Book wat : bookshelf) {
             System.out.println(wat.getName() + " - " + wat.getPages());
         }
-            for (int i = 0; i < bookshelf.length; i++) {
-                Book wat = bookshelf[i];
-                if (wat.getName().equals("Clean code")) {
-                    System.out.println(wat.getName() + " - " + wat.getPages());
-                }
+        for (Book wat : bookshelf) {
+            if ("Clean code".equals(wat.getName())) {
+                System.out.println(wat.getName() + " - " + wat.getPages());
             }
+        }
         }
     }
