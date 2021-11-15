@@ -48,12 +48,22 @@ public class StartUI {
                 } else {
                     System.out.println("Nothing to delete");
                 }
+            } else if (select == 4) {
+                System.out.println("=== Find item by id ===");
+                System.out.println("Enter id: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                Item item = tracker.findById(id);
+                if (item != null) {
+                    System.out.println(item);
+                } else {
+                    System.out.println("Id " + id + " not found");
+                }
             } else if (select == 6) {
                 run = false;
             }
         }
-
     }
+
 
     private void showMenu() {
         String[] menu = {
