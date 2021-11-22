@@ -1,12 +1,11 @@
 package ru.job4j.poly;
 
 public interface Transport {
-    boolean drive();
+    void drive();
 
-    int passengers(int quantity);
+    void passengers(int quantity);
 
     default double refuel(double liters) {
         return liters * 52.7;
     }
 }
-
