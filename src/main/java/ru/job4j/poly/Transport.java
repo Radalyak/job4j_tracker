@@ -5,7 +5,5 @@ public interface Transport {
 
     void passengers(int quantity);
 
-    default double refuel(double liters) {
-        return liters * 52.7;
+    double refuel(double liters);
     }
-}
