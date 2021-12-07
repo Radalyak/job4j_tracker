@@ -6,7 +6,7 @@ public class StartUI {
         boolean run = true;
         while (run) {
             showMenu();
-            int select = Integer.parseInt(input.askStr("Выберите опцию: "));
+            int select = input.askInt("Выберите опцию: ");
             if (select == 0) {
                 System.out.println("=== Создать новую заявку ===");
                 String name = input.askStr("Введите имя заявки: ");
@@ -25,7 +25,7 @@ public class StartUI {
                 }
             } else if (select == 2) {
                 System.out.println("=== Изменить заявку ===");
-                int id = Integer.parseInt(input.askStr("Введите номер заявки: "));
+                int id = input.askInt("Введите номер заявки: ");
                 String name = input.askStr("Введите новое имя заявки: ");
                 Item item = new Item(name);
                 if (tracker.replace(id, item)) {
@@ -35,7 +35,7 @@ public class StartUI {
                 }
             } else if (select == 3) {
                 System.out.println("=== Удалить заявку ===");
-                int id = Integer.parseInt(input.askStr("Введите номер заявки: "));
+                int id = input.askInt("Введите номер заявки: ");
                 if (tracker.delete(id)) {
                     System.out.println("Заявка успешно удалена. ");
                 } else {
@@ -43,7 +43,7 @@ public class StartUI {
                 }
             } else if (select == 4) {
                 System.out.println("=== Найти заявку по номеру ===");
-                int id = Integer.parseInt(input.askStr("Введите номер заявки: "));
+                int id = input.askInt("Введите номер заявки: ");
                 Item item = tracker.findById(id);
                 if (item != null) {
                     System.out.println(item);
