@@ -3,10 +3,11 @@ package ru.job4j.pojo;
 public class Library {
 
     public static void main(String[] args) {
-        Book ccode = new Book("Clean code", 1024);
-        Book shantaram = new Book("Shantaram", 800);
-        Book under = new Book("Under the dome", 765);
-        Book tutorial = new Book("Repairing washing machines for dummies", 427);
+        Book ccode = new BookBuilder().setName("Clean code").setPages(1024).createBook();
+        Book shantaram = new BookBuilder().setName("Shantaram").setPages(800).createBook();
+        Book under = new BookBuilder().setName("Under the dome").setPages(765).createBook();
+        Book tutorial = new BookBuilder().setName("Repairing washing machines for dummies").
+                setPages(427).createBook();
         Book[] bookshelf = new Book[4];
         bookshelf[0] = ccode;
         bookshelf[1] = shantaram;
@@ -28,5 +29,5 @@ public class Library {
                 System.out.println(wat.getName() + " - " + wat.getPages());
             }
         }
-        }
     }
+}

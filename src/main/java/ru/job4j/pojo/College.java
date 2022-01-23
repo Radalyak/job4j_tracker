@@ -6,7 +6,7 @@ public class College {
         alexei.setDate("01.09.2010");
         alexei.setGroup(150202);
         alexei.setName("Alexei Yakovlev");
-        System.out.println(alexei.getName() + " started study " + alexei.getDate() +
-                            " in group " + alexei.getGroup() + ".");
+        System.out.println(alexei.getName() + " started study " + alexei.getDate()
+                + " in group " + alexei.getGroup() + ".");
     }
 }
