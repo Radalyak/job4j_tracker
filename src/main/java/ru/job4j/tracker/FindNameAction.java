@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
 public class FindNameAction implements UserAction {
+    private final Output out;
+
+    public FindNameAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return "Найти заявку по имени";
@@ -8,15 +14,15 @@ public class FindNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("=== Найти заявку по имени ===");
+        out.println("=== Найти заявку по имени ===");
         String name = input.askStr("Введите имя заявки: ");
         Item[] items = tracker.findByName(name);
         if (items.length > 0) {
             for (Item item : items) {
-                System.out.println(item);
+                out.println(item);
             }
         } else {
-            System.out.println("Заявка с именем: " + name + " не найдна");
+            out.println("Заявка с именем: " + name + " не найдна");
         }
         return true;
     }
