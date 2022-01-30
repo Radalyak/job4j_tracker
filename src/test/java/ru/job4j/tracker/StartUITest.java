@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -55,4 +56,111 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertNull(tracker.findById(item.getId()));
     }
+
+    @Test
+    public void whenReplaceItemTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        String replaceName = "New Test Name";
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new ReplaceAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu." + ln
+                        + "0. Изменить заявку" + ln
+                        + "1. Выйти из программы" + ln
+                        + "=== Изменить заявку ===" + ln
+                        + "Заявка изменена успешно." + ln
+                        + "Menu." + ln
+                        + "0. Изменить заявку" + ln
+                        + "1. Выйти из программы" + ln
+        ));
+    }
+
+    @Test
+    public void whenFindAllActionOfTwo() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Item two = tracker.add(new Item("test2"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), "test1", "1",
+                        "0", String.valueOf(two.getId()), "test2", "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new ShowAllAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu." + ln
+                        + "0. Показать все заявки" + ln
+                        + "1. Выйти из программы" + ln
+                        + "=== показать все заявки ===" + ln
+                        + one + ln
+                        + two + ln
+                        + "Menu." + ln
+                        + "0. Показать все заявки" + ln
+                        + "1. Выйти из программы" + ln
+        ));
+    }
+
+    @Test
+    public void whenFindNameActionOfTwo() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", one.getName(), "1"});
+        UserAction[] actions = new UserAction[]{
+                new FindNameAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu." + ln
+                        + "0. Найти заявку по имени" + ln
+                        + "1. Выйти из программы" + ln
+                        + "=== Найти заявку по имени ===" + ln
+                        + one + ln
+                        + "Menu." + ln
+                        + "0. Найти заявку по имени" + ln
+                        + "1. Выйти из программы" + ln
+        ));
+    }
+
+    @Test
+    public void whenFindIDActionOfTwo() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), "1"});
+        UserAction[] actions = new UserAction[]{
+                new FindIDAction(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu." + ln
+                        + "0. Найти заявку по номеру" + ln
+                        + "1. Выйти из программы" + ln
+                        + "=== Найти заявку по номеру ===" + ln
+                        + one + ln
+                        + "Menu." + ln
+                        + "0. Найти заявку по номеру" + ln
+                        + "1. Выйти из программы" + ln
+        ));
+    }
 }
+
