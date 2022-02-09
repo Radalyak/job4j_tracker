@@ -1,17 +1,22 @@
 package ru.job4j.tracker;
 
 public class StartUI {
-private final Output out;
+    private final Output out;
 
-public StartUI(Output out) {
-    this.out = out;
-}
+    public StartUI(Output out) {
+        this.out = out;
+    }
 
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
-            int select = input.askInt("Select: ");
+            int select = input.askInt("Выбор: ");
+            if (select < 0 || select >= actions.length) {
+                out.println("Некорректный ввод, выберите в диапазоне: 0 .. "
+                        + (actions.length - 1));
+                continue;
+            }
             UserAction action = actions[select];
             run = action.execute(input, tracker);
 
@@ -26,8 +31,8 @@ public StartUI(Output out) {
     }
 
     public static void main(String[] args) {
-    Output output = new ConsoleOutput();
-        Input input = new ConsoleInput();
+        Output output = new ConsoleOutput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(output),
