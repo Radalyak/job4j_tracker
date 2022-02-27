@@ -3,10 +3,8 @@ package ru.job4j.tracker;
 public final class SingleTracker {
 
     private static SingleTracker instance = null;
+
     private Tracker tracker = new Tracker();
-    private final Item[] items = new Item[100];
-    private int ids = 1;
-    private int size = 0;
 
     private SingleTracker() {
     }
@@ -34,10 +32,6 @@ public final class SingleTracker {
         return tracker.findByName(key);
     }
 
-    public int indexOf(int id) {
-        return tracker.indexOf(id);
-    }
-
     public boolean replace(int id, Item item) {
         return tracker.replace(id, item);
     }
@@ -46,4 +40,3 @@ public final class SingleTracker {
         return tracker.delete(id);
     }
 }
-
