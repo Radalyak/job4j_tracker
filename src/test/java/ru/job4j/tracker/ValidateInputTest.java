@@ -45,7 +45,6 @@ public class ValidateInputTest {
         assertThat(selected3, is(3));
     }
 
-
     @Test
     public void whenNegativeInput() {
         Output out = new StubOutput();
