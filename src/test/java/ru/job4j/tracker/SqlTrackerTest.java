@@ -139,8 +139,4 @@ public class SqlTrackerTest {
         Item item1 = tracker.add(new Item("Stepan"));
         MatcherAssert.assertThat(tracker.findById(3), is(nullValue()));
     }
-
-    @org.junit.jupiter.api.Test
-    void init() {
-    }
 }
